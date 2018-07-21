@@ -26,13 +26,16 @@ var SceneB = new (function(){
     };
     function drawFatBezierPoint(x,y){
         fill(0);
+        noStroke();
         ellipse(x,y,20,20);
     }
     function drawThinBezierPoint(x,y){
         fill(0);
+        noStroke();
         ellipse(x,y,2,2);
     }
     function drawControlPoint(i,x,y){
+        noStroke();
         fill(255);
         ellipse(x,y,10,10);
         fill(0);
