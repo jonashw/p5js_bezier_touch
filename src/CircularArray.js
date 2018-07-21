@@ -5,6 +5,9 @@ function CircularArray(_items)
     this.getCurrent = function(){
       return _items[_index];
     }
+    this.getCurrentIndex = function(){
+        return _index;
+    }
     this.moveNext = function(){
         _index += 1;
         if (_index >= _items.length)
