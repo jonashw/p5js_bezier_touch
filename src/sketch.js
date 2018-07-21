@@ -65,23 +65,17 @@ function draw() {
     case 1://point
       break;
     case 2://linear
-      if(showControlPoints){
-        drawPolyLine(p0, p1);
-      }
+      if(showControlPoints){ drawPolyLine(p0, p1); }
       fill(34,177,76);
-      Bezier.linear(p0, p1);
+      Bezier.linear(p0, p1, bezPoint);
       break;
     case 3://quadratic
-      if(showControlPoints){
-        drawPolyLine(p0, p1, p2);
-      }
+      if(showControlPoints){ drawPolyLine(p0, p1, p2); }
       fill(255,0,0);
       Bezier.quadratic(p0, p1, p2, bezPoint);
       break;
     case 4://cubic
-      if(showControlPoints){
-        drawPolyLine(p0, p1, p2, p3);
-      }
+      if(showControlPoints){ drawPolyLine(p0, p1, p2, p3); }
       fill(0,162,232);
       Bezier.cubic(p0, p1, p2, p3, bezPoint);
       break;

@@ -24,10 +24,19 @@ var Bezier = (() => {
         let y = (p0c * p0.y) + (p1c * p1.y) + (p2c * p2.y) + (p3c * p3.y);
         callback(x,y);
     }
+    function linearEase(t,p0,p1,callback){
+        let p0c = t;
+        let p1c = 1-t;
+        let x = (p0c * p0.x) + (p1c * p1.x);
+        let y = (p0c * p0.y) + (p1c * p1.y);
+        callback(x,y);
+    }
     return {
         step: 0.005,
-        linear: (p0,p1) => {
-            line(p0.x, p0.y, p1.x, p1.y);
+        linear: (p0,p1,callback) => {
+            for(var t=0; t<1; t+=Bezier.step){
+                linearEase(t,p0,p1,callback);
+            }
         },
         quadraticEase: quadraticEase,
         quadratic: function(p0,p1,p2,callback) {
