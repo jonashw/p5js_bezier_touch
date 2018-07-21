@@ -6,9 +6,6 @@ var scenes = [
 var scene = new CircularArray(scenes);
 scene.onNext.subscribe(() => console.log('moved to the previous scene:' + scene.getCurrentIndex()));
 scene.onPrev.subscribe(() => console.log('moved to the next scene:' + scene.getCurrentIndex()));
-var buttons = (() => {
-  return [a];
-})();
 
 function executeAll(methodName){
   for(var i=0; i<scenes.length; i++){
