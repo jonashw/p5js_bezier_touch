@@ -33,6 +33,7 @@ var Bezier = (() => {
     }
     return {
         step: 0.005,
+        linearEase: linearEase,
         linear: (p0,p1,callback) => {
             for(var t=0; t<1; t+=Bezier.step){
                 linearEase(t,p0,p1,callback);
