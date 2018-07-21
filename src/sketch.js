@@ -1,6 +1,7 @@
 var looping = true;
 var scenes = [
-  SceneA
+  SceneA,
+  SceneB
 ];
 var scene = new CircularArray(scenes);
 
