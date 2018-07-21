@@ -107,6 +107,7 @@ function drawPolyLine(/*use this as you would a `params Vector2[] lines` argumen
 }
 
 function bezPoint(x,y){
+  noStroke();
   ellipse(x,y,20,20);
 }
 
