@@ -60,36 +60,29 @@ function draw() {
   let p1 = ts[1];
   let p2 = ts[2];
   let p3 = ts[3];
-  stroke(0);
-  strokeWeight(1);
+  noStroke();
   switch(ts.length){
     case 1://point
       break;
     case 2://linear
       if(showControlPoints){
-        line(p0.x, p0.y, p1.x, p1.y);
+        drawPolyLine(p0, p1);
       }
-      stroke(34,177,76);
-      strokeWeight(20);
+      fill(34,177,76);
       Bezier.linear(p0, p1);
       break;
     case 3://quadratic
       if(showControlPoints){
-        line(p0.x, p0.y, p1.x, p1.y);
-        line(p1.x, p1.y, p2.x, p2.y);
+        drawPolyLine(p0, p1, p2);
       }
-      stroke(255,0,0);
-      strokeWeight(20);
+      fill(255,0,0);
       Bezier.quadratic(p0, p1, p2, bezPoint);
       break;
     case 4://cubic
       if(showControlPoints){
-        line(p0.x, p0.y, p1.x, p1.y);
-        line(p1.x, p1.y, p2.x, p2.y);
-        line(p2.x, p2.y, p3.x, p3.y);
+        drawPolyLine(p0, p1, p2, p3);
       }
-      stroke(0,162,232);
-      strokeWeight(20);
+      fill(0,162,232);
       Bezier.cubic(p0, p1, p2, p3, bezPoint);
       break;
   }
@@ -100,8 +93,21 @@ function draw() {
   }
 }
 
+function drawPolyLine(/*use this as you would a `params Vector2[] lines` argument in C# */){
+  stroke(0);
+  strokeWeight(2);
+  var lastPoint;
+  for(var i=0; i<arguments.length; i++){
+    var point = arguments[i]; 
+    if(!!lastPoint){
+      line(lastPoint.x, lastPoint.y, point.x, point.y);
+    }
+    lastPoint = point;
+  }
+}
+
 function bezPoint(x,y){
-  ellipse(x,y,5,5);
+  ellipse(x,y,20,20);
 }
 
 function controlPoint(p){
