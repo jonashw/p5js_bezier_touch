@@ -13,7 +13,7 @@ var SceneC = new (function(){
     };
     this.draw = () => { 
         background(255,0,0);
-        t += 0.01;
+        t += 0.005;
         if(t > 1){
             t = 0;
         }
@@ -21,8 +21,9 @@ var SceneC = new (function(){
         stroke(255);
         bezier(p0.x, p0.y, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
         bezierDetail(5);
-        var x = bezierPoint(p0.x, p1.x, p2.x, p3.x, t);
-        var y = bezierPoint(p0.y, p1.y, p2.y, p3.y, t);
+        let t_eased = Easing.Cubic.InOut(t);
+        var x = bezierPoint(p0.x, p1.x, p2.x, p3.x, t_eased);
+        var y = bezierPoint(p0.y, p1.y, p2.y, p3.y, t_eased);
         drawFatBezierPoint(x,y);
         drawControlPoint(0,p0.x, p0.y);
         drawControlPoint(1,p1.x, p1.y);

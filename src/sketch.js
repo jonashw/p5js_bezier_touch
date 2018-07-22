@@ -1,8 +1,8 @@
 var looping = true;
 var scenes = [
-  SceneC,
   SceneA,
-  SceneB
+  SceneB,
+  SceneC
 ];
 var scene = new CircularArray(scenes);
 scene.onNext.subscribe(() => console.log('moved to the previous scene:' + scene.getCurrentIndex()));
