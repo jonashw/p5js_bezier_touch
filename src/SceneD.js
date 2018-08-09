@@ -1,4 +1,5 @@
 var SceneD = new (function(){
+    //VaporWave pallete from http://www.color-hex.com/color-palette/10221
     var looping = true;
     var showControlPoints = true;
 
