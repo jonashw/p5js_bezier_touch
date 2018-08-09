@@ -5,8 +5,8 @@ var scenes = [
   SceneC
 ];
 var scene = new CircularArray(scenes);
-scene.onNext.subscribe(() => console.log('moved to the previous scene:' + scene.getCurrentIndex()));
-scene.onPrev.subscribe(() => console.log('moved to the next scene:' + scene.getCurrentIndex()));
+scene.onPrev.subscribe(() => console.log('moved to the prev scene:' + scene.getCurrentIndex()));
+scene.onNext.subscribe(() => console.log('moved to the next scene:' + scene.getCurrentIndex()));
 
 function executeAll(methodName){
   for(var i=0; i<scenes.length; i++){
@@ -28,6 +28,19 @@ function preload(){
 }
 
 function setup() { 
+    var hammer = new Hammer.Manager(document.body, {
+      recognizers: [
+        [Hammer.Swipe,{ direction: Hammer.DIRECTION_HORIZONTAL }],
+      ]
+    });
+
+    hammer.on('swiperight',function(e){
+      scene.movePrev();
+    })
+    hammer.on('swipeleft',function(e){
+      scene.moveNext();
+    })
+    
   resizeCanvas(windowWidth, windowHeight);
   executeAll('setup');
   let p = createButton("<< Previous Sketch");
@@ -44,11 +57,7 @@ function mouseMoved  (){ executeCurrent('mouseMoved');   }
 function touchMoved  (){ executeCurrent('touchMoved');   }
 
 function touchStarted(){
-  if(touches.length == 5){
-    scene.moveNext();
-  } else {
-    executeCurrent('touchStarted');
-  }
+  executeCurrent('touchStarted');
   return false; // This is to prevent pinch-zooming on touch devices.
 }
 
