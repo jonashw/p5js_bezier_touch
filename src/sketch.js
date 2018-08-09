@@ -1,6 +1,7 @@
 var looping = true;
 var scenes = [
   SceneA,
+  SceneD,
   SceneB,
   SceneC
 ];
