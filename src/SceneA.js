@@ -2,20 +2,7 @@ var SceneA = new (function(){
     var looping = true;
     var showControlPoints = true;
 
-    var persistantTouches = new (function(){
-        var _key = 'touches';
-        this.value = [];
-        this.init = function(){
-            this.value = JSON.parse(localStorage.getItem(_key) || "[]");
-        },
-        this.save = function(ts){
-            this.value.length = 0;
-            for(var i=0; i<ts.length; i++){
-            this.value[i] = ts[i];
-            }
-            localStorage.setItem(_key,JSON.stringify(this.value));
-        }
-    })();
+    var persistantTouches = new PersistentTouches('bezier-touches');
 
     this.preload = () => {
         persistantTouches.init();
